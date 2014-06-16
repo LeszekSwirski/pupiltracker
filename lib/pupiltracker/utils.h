@@ -1,11 +1,13 @@
-#ifndef __UTILS_H__
-#define __UTILS_H__
+#ifndef __PUPIL_TRACKER_UTILS_H__
+#define __PUPIL_TRACKER_UTILS_H__
 
 #include <string>
 #include <vector>
 #include <set>
 #include <sstream>
 #include <stdexcept>
+
+namespace pupiltracker {
 
 class MakeString
 {
@@ -81,4 +83,6 @@ std::vector<T> randomSubset(const std::vector<T>& src, typename std::vector<T>::
 	return ret;
 }
 
-#endif // __UTILS_H__
+} //namespace pupiltracker
+
+#endif // __PUPIL_TRACKER_UTILS_H__

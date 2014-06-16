@@ -1,4 +1,4 @@
-#include "utils.h"
+#include "pupiltracker/utils.h"
 
 #include <random>
 
@@ -8,7 +8,7 @@ int pupiltracker::random(int min, int max)
 	std::uniform_int_distribution<> distribution(min, max);
 	return distribution(static_gen);
 }
-int random(int min, int max, unsigned int seed)
+int pupiltracker::random(int min, int max, unsigned int seed)
 {
     std::mt19937 gen(seed);
     std::uniform_int_distribution<> distribution(min, max);

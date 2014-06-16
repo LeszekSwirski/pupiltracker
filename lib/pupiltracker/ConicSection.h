@@ -1,5 +1,7 @@
-#ifndef __CONIC_SECTION_H__
-#define __CONIC_SECTION_H__
+#ifndef __PUPILTRACKER_CONIC_SECTION_H__
+#define __PUPILTRACKER_CONIC_SECTION_H__
+
+namespace pupiltracker {
 
 template<typename T>
 class ConicSection_
@@ -70,4 +72,6 @@ protected:
 };
 typedef ConicSection_<float> ConicSection;
 
-#endif // __CONIC_SECTION_H__
+} //namespace pupiltracker
+
+#endif // __PUPILTRACKER_CONIC_SECTION_H__

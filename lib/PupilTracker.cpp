@@ -1,4 +1,4 @@
-#include "PupilTracker.h"
+#include "pupiltracker/PupilTracker.h"
 
 #include <iostream>
 
@@ -10,21 +10,21 @@
 
 #include <tbb/tbb.h>
 
-#include "cvx.h"
+#include "pupiltracker/cvx.h"
 
 namespace 
 {
 	struct section_guard
 	{
 		std::string name;
-		tracker_log& log;
-		timer t;
-		section_guard(const std::string& name, tracker_log& log) : name(name), log(log), t() {  }
+		pupiltracker::tracker_log& log;
+		pupiltracker::timer t;
+		section_guard(const std::string& name, pupiltracker::tracker_log& log) : name(name), log(log), t() {  }
 		~section_guard() { log.add(name, t); }
 		operator bool() const {return false;}
 	};
 
-	inline section_guard make_section_guard(const std::string& name, tracker_log& log)
+	inline section_guard make_section_guard(const std::string& name, pupiltracker::tracker_log& log)
 	{
 		return section_guard(name,log);
 	}
@@ -83,24 +83,24 @@ public:
 	int r_inner, r_outer;
 };
 
-cv::RotatedRect fitEllipse(const std::vector<PupilTracker::EdgePoint>& edgePoints)
+cv::RotatedRect fitEllipse(const std::vector<pupiltracker::EdgePoint>& edgePoints)
 {
 	std::vector<cv::Point2f> points;
 	points.reserve(edgePoints.size());
 
-	BOOST_FOREACH(const PupilTracker::EdgePoint& e, edgePoints)
+	BOOST_FOREACH(const pupiltracker::EdgePoint& e, edgePoints)
 		points.push_back(e.point);
 
 	return cv::fitEllipse(points);
 }
 
 
-bool PupilTracker::findPupilEllipse(
-	const TrackerParams& params,
+bool pupiltracker::findPupilEllipse(
+	const pupiltracker::TrackerParams& params,
 	const cv::Mat& m,
 
-	PupilTracker::findPupilEllipse_out& out,
-	tracker_log& log
+	pupiltracker::findPupilEllipse_out& out,
+	pupiltracker::tracker_log& log
 	)
 {
 	// --------------------
@@ -184,7 +184,7 @@ bool PupilTracker::findPupilEllipse(
 			// Use TBB for rows
 			std::pair<double,cv::Point2f> minRadiusResponse = tbb::parallel_reduce(
 				tbb::blocked_range<int>(0, (mEye.rows-r - r - 1)/ystep + 1, ((mEye.rows-r - r - 1)/ystep + 1) / 8),
-				std::make_pair(std::numeric_limits<double>::infinity(), PupilTracker::UNKNOWN_POSITION),
+				std::make_pair(std::numeric_limits<double>::infinity(), UNKNOWN_POSITION),
 				[&] (tbb::blocked_range<int> range, const std::pair<double,cv::Point2f>& minValIn) -> std::pair<double,cv::Point2f>
 			{
 				std::pair<double,cv::Point2f> minValOut = minValIn;

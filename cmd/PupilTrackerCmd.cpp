@@ -45,9 +45,9 @@ int main(int argc, char* argv[])
         }
 
 
-        PupilTracker::TrackerParams params;
-		params.Radius_Min = 10;
-		params.Radius_Max = 60;
+        pupiltracker::TrackerParams params;
+		params.Radius_Min = 3;
+		params.Radius_Max = 8;
 
 		params.CannyBlur = 1.6;
 		params.CannyThreshold1 = 30;
@@ -61,12 +61,12 @@ int main(int argc, char* argv[])
 		params.EarlyRejection = true;
 		params.Seed = -1;
 
-        PupilTracker::findPupilEllipse_out out;
-        tracker_log log;
-        PupilTracker::findPupilEllipse(params, m, out, log); 
+        pupiltracker::findPupilEllipse_out out;
+        pupiltracker::tracker_log log;
+        pupiltracker::findPupilEllipse(params, m, out, log); 
 
-        cvx::cross(m, out.pPupil, 5, CV_RGB(255,255,0));
-        cv::ellipse(m, out.elPupil, CV_RGB(255,0,255));
+        pupiltracker::cvx::cross(m, out.pPupil, 5, pupiltracker::cvx::rgb(255,255,0));
+        cv::ellipse(m, out.elPupil, pupiltracker::cvx::rgb(255,0,255));
 
 
         imshowscale("Haar Pupil", out.mHaarPupil, 3);

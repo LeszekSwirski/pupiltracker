@@ -1,7 +1,9 @@
-#ifndef __TIMER_H__
-#define __TIMER_H__
+#ifndef __PUPIL_TRACKER_TIMER_H__
+#define __PUPIL_TRACKER_TIMER_H__
 
-#include "high_resolution_timer.hpp"
+#include <pupiltracker/high_resolution_timer.hpp>
+
+namespace pupiltracker {
 
 class timer
 {
@@ -59,6 +61,8 @@ protected:
 	bool m_paused;
 };
 
+} //namespace pupiltracker
+
 #define PAUSE_TIMER(t) if(timer::pause_guard const& _timer_pause_guard_(t)) {} else
 
-#endif // __TIMER_H__
+#endif // __PUPIL_TRACKER_TIMER_H__

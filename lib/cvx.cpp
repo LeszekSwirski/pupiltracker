@@ -1,7 +1,7 @@
-#include "cvx.h"
+#include "pupiltracker/cvx.h"
 
 
-void cvx::getROI(const cv::Mat& src, cv::Mat& dst, const cv::Rect& roi, int borderType)
+void pupiltracker::cvx::getROI(const cv::Mat& src, cv::Mat& dst, const cv::Rect& roi, int borderType)
 {
 	cv::Rect bbSrc = boundingBox(src);
 	cv::Rect validROI = roi & bbSrc;
@@ -26,7 +26,7 @@ void cvx::getROI(const cv::Mat& src, cv::Mat& dst, const cv::Rect& roi, int bord
 }
 
 
-float cvx::histKmeans(const cv::Mat_<float>& hist, int bin_min, int bin_max, int K, float init_centres[], cv::Mat_<uchar>& labels, cv::TermCriteria termCriteria)
+float pupiltracker::cvx::histKmeans(const cv::Mat_<float>& hist, int bin_min, int bin_max, int K, float init_centres[], cv::Mat_<uchar>& labels, cv::TermCriteria termCriteria)
 {
 	CV_Assert( hist.rows == 1 || hist.cols == 1 && K > 0 );
 
@@ -119,7 +119,7 @@ float cvx::histKmeans(const cv::Mat_<float>& hist, int bin_min, int bin_max, int
 	return std::numeric_limits<float>::infinity();
 }
 
-cv::RotatedRect cvx::fitEllipse(const cv::Moments& m)
+cv::RotatedRect pupiltracker::cvx::fitEllipse(const cv::Moments& m)
 {
 	cv::RotatedRect ret;
 
@@ -152,7 +152,7 @@ cv::RotatedRect cvx::fitEllipse(const cv::Moments& m)
 
 	return ret;
 }
-cv::Vec2f cvx::majorAxis(const cv::RotatedRect& ellipse)
+cv::Vec2f pupiltracker::cvx::majorAxis(const cv::RotatedRect& ellipse)
 {
 	return cv::Vec2f(ellipse.size.width*std::cos(PI/180*ellipse.angle), ellipse.size.width*std::sin(PI/180*ellipse.angle));
 }
