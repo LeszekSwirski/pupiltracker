@@ -704,6 +704,19 @@ bool pupiltracker::findPupilEllipse(
 						if (inliers.empty())
 							continue;
 
+						// Discard useless ellipses again
+						s = ellipseInlierFit.size;
+						if (!ellipseInlierFit.center.inside(bb)
+							|| s.height > params.Radius_Max*2
+							|| s.width > params.Radius_Max*2
+							|| s.height < params.Radius_Min*2 && s.width < params.Radius_Min*2
+							|| s.height > 4*s.width
+							|| s.width > 4*s.height
+							)
+						{
+							// Bad ellipse! Go to your room!
+							continue;
+						}
 
 						// Calculate ellipse goodness
 						double ellipseGoodness = 0;
@@ -792,6 +805,9 @@ bool pupiltracker::findPupilEllipse(
 			elPupil.center.y += roiPupil.y;
 		}
 
+		if (inliers.size() == 0)
+			return false;
+
 		cv::Point2f pPupil = elPupil.center;
 
 		out.pPupil = pPupil;
@@ -800,4 +816,6 @@ bool pupiltracker::findPupilEllipse(
 
 		return true;
 	}
+
+    return false;
 }
