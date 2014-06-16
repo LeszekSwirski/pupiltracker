@@ -1,23 +1,16 @@
 #include "utils.h"
 
-#include <boost/random/mersenne_twister.hpp>
-#include <boost/random/uniform_int.hpp>
-#include <boost/random/variate_generator.hpp>
+#include <random>
 
-static boost::mt19937 static_gen;
-int random(int min, int max)
+static std::mt19937 static_gen;
+int pupiltracker::random(int min, int max)
 {
-	boost::uniform_int<> dist(min, max);
-	boost::variate_generator<boost::mt19937&, boost::uniform_int<> > die(static_gen, dist);
-
-	return die();
+	std::uniform_int_distribution<> distribution(min, max);
+	return distribution(static_gen);
 }
 int random(int min, int max, unsigned int seed)
 {
-	boost::mt19937 gen;
-	gen.seed(seed);
-	boost::uniform_int<> dist(min, max);
-	boost::variate_generator<boost::mt19937&, boost::uniform_int<> > die(gen, dist);
-
-	return die();
+    std::mt19937 gen(seed);
+    std::uniform_int_distribution<> distribution(min, max);
+    return distribution(gen);
 }
