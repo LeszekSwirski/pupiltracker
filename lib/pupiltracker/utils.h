@@ -46,16 +46,17 @@ std::vector<T> randomSubset(const std::vector<T>& src, typename std::vector<T>::
 		throw std::range_error("Subset size out of range");
 
 	std::vector<T> ret;
-	std::set<int> vals;
+	std::set<size_t> vals;
 
 	for (size_t j = src.size() - size; j < src.size(); ++j)
 	{
-		int rand = random(0, j); // generate a random integer in range [0, j]
+		size_t idx = random(0, j); // generate a random integer in range [0, j]
 
-		if (vals.find(rand) == vals.end())
-			ret.push_back(src[rand]);
-		else
-			ret.push_back(src[j]);
+		if (vals.find(idx) != vals.end())
+			idx = j;
+
+		ret.push_back(src[idx]);
+        vals.insert(idx);
 	}
 
 	return ret;
@@ -68,16 +69,17 @@ std::vector<T> randomSubset(const std::vector<T>& src, typename std::vector<T>::
 		throw std::range_error("Subset size out of range");
 
 	std::vector<T> ret;
-	std::set<int> vals;
+	std::set<size_t> vals;
 
 	for (size_t j = src.size() - size; j < src.size(); ++j)
 	{
-		int rand = random(0, j, seed+j); // generate a random integer in range [0, j]
+        size_t idx = random(0, j, seed+j); // generate a random integer in range [0, j]
 
-		if (vals.find(rand) == vals.end())
-			ret.push_back(src[rand]);
-		else
-			ret.push_back(src[j]);
+        if (vals.find(idx) != vals.end())
+            idx = j;
+
+        ret.push_back(src[idx]);
+        vals.insert(idx);
 	}
 
 	return ret;
