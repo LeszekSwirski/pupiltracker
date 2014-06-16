@@ -3,7 +3,7 @@ find_package (Boost REQUIRED)
 find_package (TBB REQUIRED)
 
 include_directories(
-	${Boost_INCLUDE_DIRS}
+    ${Boost_INCLUDE_DIRS}
     ${OpenCV_INCLUDE_DIRS}
     ${TBB_INCLUDE_DIRS}
 )

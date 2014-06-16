@@ -5,8 +5,8 @@
 static std::mt19937 static_gen;
 int pupiltracker::random(int min, int max)
 {
-	std::uniform_int_distribution<> distribution(min, max);
-	return distribution(static_gen);
+    std::uniform_int_distribution<> distribution(min, max);
+    return distribution(static_gen);
 }
 int pupiltracker::random(int min, int max, unsigned int seed)
 {

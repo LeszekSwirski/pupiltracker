@@ -12,7 +12,7 @@ add_library (
 
 include_directories(
     SYSTEM
-	${Boost_INCLUDE_DIRS}
+    ${Boost_INCLUDE_DIRS}
     ${OpenCV_INCLUDE_DIRS}
     ${TBB_INCLUDE_DIRS}
 )

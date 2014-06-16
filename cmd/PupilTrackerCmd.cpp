@@ -47,20 +47,20 @@ int main(int argc, char* argv[])
 
 
         pupiltracker::TrackerParams params;
-		params.Radius_Min = 3;
-		params.Radius_Max = 8;
+        params.Radius_Min = 3;
+        params.Radius_Max = 8;
 
-		params.CannyBlur = 1;
-		params.CannyThreshold1 = 20;
-		params.CannyThreshold2 = 40;
-		params.StarburstPoints = 0;
+        params.CannyBlur = 1;
+        params.CannyThreshold1 = 20;
+        params.CannyThreshold2 = 40;
+        params.StarburstPoints = 0;
 
-		params.PercentageInliers = 30;
-		params.InlierIterations = 2;
-		params.ImageAwareSupport = true;
-		params.EarlyTerminationPercentage = 95;
-		params.EarlyRejection = true;
-		params.Seed = -1;
+        params.PercentageInliers = 30;
+        params.InlierIterations = 2;
+        params.ImageAwareSupport = true;
+        params.EarlyTerminationPercentage = 95;
+        params.EarlyRejection = true;
+        params.Seed = -1;
 
         pupiltracker::findPupilEllipse_out out;
         pupiltracker::tracker_log log;

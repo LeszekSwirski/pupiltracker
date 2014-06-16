@@ -15,32 +15,32 @@ namespace pupiltracker {
 struct tracker_log
 {
 public:
-	typedef std::vector< std::pair<std::string, std::string> >::iterator iterator;
-	typedef std::vector< std::pair<std::string, std::string> >::const_iterator const_iterator;
+    typedef std::vector< std::pair<std::string, std::string> >::iterator iterator;
+    typedef std::vector< std::pair<std::string, std::string> >::const_iterator const_iterator;
 
-	template<typename T>
-	void add(const std::string& key, const T& val)
-	{
-		m_log.push_back(std::make_pair(key, boost::lexical_cast<std::string>(val)));
-	}
-	void add(const std::string& key, const timer& val)
-	{
-		std::stringstream ss;
-		ss.precision(2);
-		ss.setf(std::ios::fixed);
-		ss << (val.elapsed()*1000.0) << "ms";
-		m_log.push_back(std::make_pair(key, ss.str()));
-	}
+    template<typename T>
+    void add(const std::string& key, const T& val)
+    {
+        m_log.push_back(std::make_pair(key, boost::lexical_cast<std::string>(val)));
+    }
+    void add(const std::string& key, const timer& val)
+    {
+        std::stringstream ss;
+        ss.precision(2);
+        ss.setf(std::ios::fixed);
+        ss << (val.elapsed()*1000.0) << "ms";
+        m_log.push_back(std::make_pair(key, ss.str()));
+    }
 
-	iterator begin() { return m_log.begin(); }
-	const_iterator begin() const { return m_log.begin(); }
-	iterator end() { return m_log.end(); }
-	const_iterator end() const { return m_log.end(); }
+    iterator begin() { return m_log.begin(); }
+    const_iterator begin() const { return m_log.begin(); }
+    iterator end() { return m_log.end(); }
+    const_iterator end() const { return m_log.end(); }
 
 private:
-	std::vector< std::pair<std::string, std::string> > m_log;
+    std::vector< std::pair<std::string, std::string> > m_log;
 };
-	
+    
 struct TrackerParams
 {
     int Radius_Min;
