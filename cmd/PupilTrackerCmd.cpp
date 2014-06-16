@@ -33,6 +33,7 @@ int main(int argc, char* argv[])
         vc >> m;
         if (m.empty())
         {
+            vc.release();
             vc.open(argv[1]);
             if (!vc.isOpened()) {
                 std::cerr << "Could not open " << argv[1] << std::endl;
@@ -49,12 +50,12 @@ int main(int argc, char* argv[])
 		params.Radius_Min = 3;
 		params.Radius_Max = 8;
 
-		params.CannyBlur = 1.6;
-		params.CannyThreshold1 = 30;
-		params.CannyThreshold2 = 50;
+		params.CannyBlur = 1;
+		params.CannyThreshold1 = 20;
+		params.CannyThreshold2 = 40;
 		params.StarburstPoints = 0;
 
-		params.PercentageInliers = 40;
+		params.PercentageInliers = 30;
 		params.InlierIterations = 2;
 		params.ImageAwareSupport = true;
 		params.EarlyTerminationPercentage = 95;
