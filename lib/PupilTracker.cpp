@@ -118,11 +118,11 @@ bool pupiltracker::findPupilEllipse(
 		}
 		else if (m.channels() == 3)
 		{
-			cv::cvtColor(m, mEye, CV_BGR2GRAY);
+			cv::cvtColor(m, mEye, cv::COLOR_BGR2GRAY);
 		}
 		else if (m.channels() == 4)
 		{
-			cv::cvtColor(m, mEye, CV_BGRA2GRAY);
+			cv::cvtColor(m, mEye, cv::COLOR_BGRA2GRAY);
 		}
 		else
 		{
@@ -164,7 +164,7 @@ bool pupiltracker::findPupilEllipse(
 	}
 
 	cv::Point2f pHaarPupil;
-	int haarRadius;
+	int haarRadius = 0;
 
 	SECTION("Haar responses", log)
 	{
