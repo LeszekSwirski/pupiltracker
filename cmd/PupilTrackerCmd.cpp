@@ -2,8 +2,8 @@
 
 #include <opencv2/highgui/highgui.hpp>
 
-#include "../lib/PupilTracker.h"
-#include "../lib/cvx.h"
+#include <pupiltracker/PupilTracker.h>
+#include <pupiltracker/cvx.h>
 
 void imshowscale(const std::string& name, cv::Mat& m, double scale)
 {

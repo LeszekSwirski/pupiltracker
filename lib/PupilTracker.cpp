@@ -10,7 +10,7 @@
 
 #include <tbb/tbb.h>
 
-#include "pupiltracker/cvx.h"
+#include <pupiltracker/cvx.h>
 
 namespace 
 {
