@@ -2,6 +2,7 @@
 #define __PUPILTRACKER_CVX_H__
 
 #include <opencv2/core/core.hpp>
+#include <opencv2/core/core_c.h>
 #include <opencv2/imgproc/imgproc.hpp>
 
 #include <pupiltracker/utils.h>
@@ -30,7 +31,7 @@ namespace cvx
     }
 
 
-    inline cv::Mat& line(cv::Mat& dst, cv::Point2f from, cv::Point2f to, cv::Scalar color, int thickness=1, int linetype=cv::LINE_AA, int shift=8) {
+    inline cv::Mat& line(cv::Mat& dst, cv::Point2f from, cv::Point2f to, cv::Scalar color, int thickness=1, int linetype=CV_AA, int shift=8) {
         auto from_i = cv::Point(from.x * (1<<shift), from.y * (1<<shift));
         auto to_i = cv::Point(to.x * (1<<shift), to.y * (1<<shift));
             
@@ -38,12 +39,12 @@ namespace cvx
         return dst;
     }
 
-    inline void cross(cv::Mat& img, cv::Point2f centre, double radius, const cv::Scalar& colour, int thickness = 1, int lineType = cv::LINE_AA, int shift = 8)
+	inline void cross(cv::Mat& img, cv::Point2f centre, double radius, const cv::Scalar& colour, int thickness = 1, int lineType=CV_AA, int shift = 8)
     {
         cvx::line(img, centre + cv::Point2f(-radius, -radius), centre + cv::Point2f(radius, radius), colour, thickness, lineType, shift);
         cvx::line(img, centre + cv::Point2f(-radius, radius), centre + cv::Point2f(radius, -radius), colour, thickness, lineType, shift);
     }
-    inline void plus(cv::Mat& img, cv::Point2f centre, double radius, const cv::Scalar& colour, int thickness = 1, int lineType = cv::LINE_AA, int shift = 8)
+	inline void plus(cv::Mat& img, cv::Point2f centre, double radius, const cv::Scalar& colour, int thickness = 1, int lineType=CV_AA, int shift = 8)
     {
         cvx::line(img, centre + cv::Point2f(0, -radius), centre + cv::Point2f(0, radius), colour, thickness, lineType, shift);
         cvx::line(img, centre + cv::Point2f(-radius, 0), centre + cv::Point2f(radius, 0), colour, thickness, lineType, shift);
