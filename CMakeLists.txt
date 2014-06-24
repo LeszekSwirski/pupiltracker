@@ -2,6 +2,8 @@ project (pupiltracker)
 cmake_minimum_required(VERSION 2.8)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
 
+set(CMAKE_DEBUG_POSTFIX "d")
+
 if (NOT MSVC)
     if (${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU")
         execute_process(COMMAND ${CMAKE_CXX_COMPILER} -dumpversion OUTPUT_VARIABLE GCC_VERSION)
