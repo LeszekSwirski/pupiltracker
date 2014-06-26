@@ -51,7 +51,7 @@ public:
 
         // Number of pixels in each part of the kernel
         int count_inner = r_inner*r_inner;
-        int count_outer = r_outer*r_outer - r_inner*r_inner;
+        int count_outer = r_outer*r_outer - count_inner;
 
         // Frobenius normalized values
         //
@@ -74,8 +74,8 @@ public:
         //  count_inner*val_inner + count_outer*val_outer = 0
         //
         // Hence:
-        val_inner = 1.0 / (r_inner*r_inner);
-        val_outer = -val_inner*count_inner/count_outer;
+        val_inner = 1.0 / count_inner;
+        val_outer = -1.0 / count_outer;
 
     }
 
@@ -190,7 +190,7 @@ bool pupiltracker::findPupilEllipse(
                 std::pair<double,cv::Point2f> minValOut = minValIn;
                 for (int i = range.begin(), y = r + range.begin()*ystep; i < range.end(); i++, y += ystep)
                 {
-                    //            ¦         ¦
+                    //            ï¿½         ï¿½
                     // row1_outer.|         |  p00._____________________.p01
                     //            |         |     |         Haar kernel |
                     //            |         |     |                     |
@@ -202,7 +202,7 @@ bool pupiltracker::findPupilEllipse(
                     //            |         |     |                     |
                     // row2_outer.|         |     |_____________________|
                     //            |         |  p10'                     'p11
-                    //            ¦         ¦
+                    //            ï¿½         ï¿½
 
                     int* row1_inner = mEyeIntegral[y+padding - r_inner];
                     int* row2_inner = mEyeIntegral[y+padding + r_inner + 1];
