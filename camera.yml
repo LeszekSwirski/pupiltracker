@@ -1,0 +1,16 @@
+%YAML:1.0
+calibration_Time: "05/03/13 13:36:29"
+Camera_Matrix: !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: d
+   data: [  6.54824468e+002, 0.000000, 2.43951611e+002,
+       0.000000, 6.36203610e+002, 1.88097931e+002, 0., 0., 1.]
+
+
+Distortion_Coefficients: !!opencv-matrix
+   rows: 5
+   cols: 1
+   dt: d
+   data: [ 0.022817 ,0.064015, -0.013294, -0.037228,0.0 ]
+
