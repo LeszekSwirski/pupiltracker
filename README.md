@@ -1,6 +1,5 @@
 # pupiltracker
-
-  Compiling 
+  
   mkdir build; cd build; cmake ..; make -j8
   
   To run the code 
